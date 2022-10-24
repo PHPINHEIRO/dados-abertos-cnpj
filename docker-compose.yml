@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    container_name: dados_abertos_cnpj_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 1q2w3e4r
+      POSTGRES_USER: CNPJDB
+      POSTGRES_DB: CNPJDB
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: email@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1q2w3e4r
+
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    name: pg_net
